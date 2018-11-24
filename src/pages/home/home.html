@@ -1,14 +1,57 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Geolocation
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="!geoposition">
+      <ion-col text-center>
+        <ion-icon name="md-compass"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!geoposition">
+      <ion-col text-center>
+        <button ion-button (click)="getGeolocation()">Get position</button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="geoposition">
+      <ion-col text-center>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title> Result</ion-card-title>
+          </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              Accuracy : {{geoposition.coords.accuracy}}
+            </ion-item>
+            <ion-item>
+                Altitude : {{geoposition.coords.altitude}}
+            </ion-item>
+            <ion-item>
+                Altitude Accuracy : {{geoposition.coords.altitudeAccuracy}}
+             </ion-item>
+             <ion-item>
+               Heading : {{geoposition.coords.heading}}
+             </ion-item>
+             <ion-item>
+               Latitude: {{geoposition.coords.latitude}}
+             </ion-item>
+             <ion-item>
+                Speed : {{geoposition.coords.speed}}
+             </ion-item>
+             <ion-item>
+                Timestamp : {{geoposition.timestamp | date}}
+             </ion-item>
+             
+          </ion-list>
+        </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
